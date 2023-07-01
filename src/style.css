@@ -4,13 +4,19 @@
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 15px 15px;
+  gap: 20px;
 }
-
+@media (max-width: 768px) {
+  .gallery {
+    justify-content: center;
+  }
+}
 .photo-card {
   flex-basis: calc(20% - 10px);
   margin-bottom: 76px;
   text-align: center;
   height: 200px;
+  width: 310px;
 }
 
 .photo-card img {
@@ -25,8 +31,13 @@
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
+  gap:10px;
 }
-
+@media (max-width: 768px) {
+  .photo-card .info {
+    gap:10px;
+  }
+}
 .photo-card .info-item {
   display: flex;
   align-items: center;
@@ -42,8 +53,10 @@
 @media (max-width: 768px) {
   .photo-card {
     flex-basis: calc(50% - 10px);
+    gap: 20px;
   }
 }
+
 /* button load more */
 .button-load-more {
   display: flex;

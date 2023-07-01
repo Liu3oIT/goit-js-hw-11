@@ -14,6 +14,7 @@ const newApiService = new NewApiService();
 async function onSearch(e) {
   e.preventDefault();
   cleanPage();
+  
   newApiService.query = e.currentTarget.elements.searchQuery.value;
   if (newApiService.query === '') {
     hideEndMessage();
@@ -48,6 +49,12 @@ async function onSearch(e) {
   } catch (e) {
     console.warn(e);
   }
+
+if(lightbox){
+  destroyLightbox()
+
+}
+lightbox();
 }
 
 async function onLoadMore() {
@@ -104,14 +111,30 @@ function displayInfo(infoRef) {
   });
 
   refs.hitsContainer.insertAdjacentHTML('beforeend', galleryAll.join(''));
-  lightbox();
+  
+  refreshLightbox();
+   
 }
 
+let galleryLightbox; 
 function lightbox() {
-  new SimpleLightbox('.gallery .photo-card a', {
+  galleryLightbox = new SimpleLightbox('.gallery .photo-card a', {
     captionDelay: 250,
   });
 }
+
+function refreshLightbox() {
+  if (galleryLightbox) {
+    galleryLightbox.refresh();
+  }
+}
+
+function destroyLightbox() {
+  if (galleryLightbox) {
+    galleryLightbox.destroy();
+  }
+}
+
 
 function cleanPage() {
   refs.hitsContainer.innerHTML = '';
